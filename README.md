@@ -7,4 +7,14 @@ A collection of open-access, interactive panels.
 
 ## Panel Gallery
 
-*(Preview images and raw links for the panels, such as the LXCXE motif, will be added here as you upload them.)*
+### 1. Interactive Residues
+An interactive panel illustrating the biochemical properties of amino acid residues. Hover over the residues to explore their classification.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg" alt="Residues Panel" width="840"/>
+</p>
+
+**How to use:**
+Copy and paste the following snippet into your Markdown file:
+```html
+<img src="[https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg](https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg)" alt="Residues Panel">
