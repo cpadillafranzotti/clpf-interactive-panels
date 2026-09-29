@@ -14,7 +14,7 @@ An interactive panel illustrating the biochemical properties of amino acid resid
   <img src="https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg" alt="Residues Panel" width="840"/>
 </p>
 
-**How to use:**
-Copy and paste the following snippet into your Markdown file:
+**How to use:** Copy and paste the following snippet into your Markdown file:
+
 ```html
 <img src="[https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg](https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg)" alt="Residues Panel">
