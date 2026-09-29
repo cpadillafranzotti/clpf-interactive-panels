@@ -1,9 +1,271 @@
-##
-<p align="center">
-  <img src="https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg" alt="Residues Panel" width="840"/>
-</p>
+<svg width="840" height="320" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* Estilos base para los cuadros y letras */
+    .grid-box { fill: #161b22; stroke: #30363d; stroke-width: 1; rx: 4; }
+    .box { fill: #161b22; stroke: #30363d; stroke-width: 1.5; rx: 4; transition: 0.2s ease; cursor: crosshair; }
+    .letter { fill: transparent; font-family: monospace; font-size: 14px; font-weight: bold; pointer-events: none; }
+    .prop-info { fill: transparent; font-family: sans-serif; font-size: 14px; text-anchor: middle; font-weight: bold; pointer-events: none; }
 
-**How to use:**
-Copy and paste the following snippet into your Markdown file:
-```html
-<img src="[https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg](https://raw.githubusercontent.com/cpadillafranzotti/clpf-interactive-panels/main/residues.svg)" alt="Residues Panel">
+    /* Animación de pulso continuo (efecto onda general) */
+    @keyframes pulse {
+      0%   { fill: #161b22; }
+      50%  { fill: #21262d; }
+      100% { fill: #161b22; }
+    }
+
+    /* Asignación de retrasos distribuidos en cascada */
+    .anim-1 .box { animation: pulse 3s infinite 0.0s; }
+    .anim-2 .box { animation: pulse 3s infinite 0.1s; }
+    .anim-3 .box { animation: pulse 3s infinite 0.2s; }
+    .anim-4 .box { animation: pulse 3s infinite 0.3s; }
+    .anim-5 .box { animation: pulse 3s infinite 0.4s; }
+    .anim-6 .box { animation: pulse 3s infinite 0.5s; }
+    .anim-7 .box { animation: pulse 3s infinite 0.6s; }
+    .anim-8 .box { animation: pulse 3s infinite 0.7s; }
+    .anim-9 .box { animation: pulse 3s infinite 0.8s; }
+    .anim-10 .box { animation: pulse 3s infinite 0.9s; }
+    .anim-11 .box { animation: pulse 3s infinite 1.0s; }
+    .anim-12 .box { animation: pulse 3s infinite 1.1s; }
+    .anim-13 .box { animation: pulse 3s infinite 1.2s; }
+    .anim-14 .box { animation: pulse 3s infinite 1.3s; }
+    .anim-15 .box { animation: pulse 3s infinite 1.4s; }
+    .anim-16 .box { animation: pulse 3s infinite 1.5s; }
+    .anim-17 .box { animation: pulse 3s infinite 1.6s; }
+    .anim-18 .box { animation: pulse 3s infinite 1.7s; }
+    .anim-19 .box { animation: pulse 3s infinite 1.8s; }
+    .anim-20 .box { animation: pulse 3s infinite 1.9s; }
+    .anim-21 .box { animation: pulse 3s infinite 2.0s; }
+    .anim-22 .box { animation: pulse 3s infinite 2.1s; }
+    .anim-23 .box { animation: pulse 3s infinite 2.2s; }
+    .anim-24 .box { animation: pulse 3s infinite 2.3s; }
+    .anim-25 .box { animation: pulse 3s infinite 2.4s; }
+    .anim-26 .box { animation: pulse 3s infinite 2.5s; }
+    .anim-27 .box { animation: pulse 3s infinite 2.6s; }
+    .anim-28 .box { animation: pulse 3s infinite 2.7s; }
+    .anim-29 .box { animation: pulse 3s infinite 2.8s; }
+    .anim-30 .box { animation: pulse 3s infinite 2.9s; }
+
+    /* Colores biológicos al pasar el ratón (Hover) */
+    .group-hydro:hover .box { fill: #e3b341 !important; } /* Amarillo - Hidrofóbico */
+    .group-polar:hover .box { fill: #7ee787 !important; }  /* Verde - Polar */
+    .group-acidic:hover .box { fill: #ff7b72 !important; } /* Rojo - Ácido */
+    .group-basic:hover .box { fill: #79c0ff !important; }  /* Azul - Básico */
+    
+    /* Mostrar letra e información al hacer hover */
+    .group:hover .letter { fill: #0d1117; }
+    .group:hover .prop-info { fill: #c9d1d9; }
+  </style>
+
+  <!-- PATRÓN DE LA CUADRÍCULA DE FONDO -->
+  <defs>
+    <pattern id="bg-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" class="grid-box" />
+    </pattern>
+  </defs>
+
+  <!-- DIBUJAR LA CUADRÍCULA BASE -->
+  <rect x="0" y="0" width="840" height="196" fill="url(#bg-grid)" />
+
+  <!-- ÁREA DE INFORMACIÓN DINÁMICA -->
+  <text x="420" y="235" class="prop-info" fill="#8b949e">Hover over any residue to explore properties</text>
+
+  <!-- LEYENDA VISUAL INFERIOR -->
+  <g transform="translate(255, 270)">
+    <rect x="0" y="0" width="12" height="12" fill="#e3b341" rx="2" />
+    <text x="18" y="10" font-family="sans-serif" font-size="12" fill="#8b949e">Hydrophobic</text>
+    <rect x="110" y="0" width="12" height="12" fill="#7ee787" rx="2" />
+    <text x="128" y="10" font-family="sans-serif" font-size="12" fill="#8b949e">Polar</text>
+    <rect x="185" y="0" width="12" height="12" fill="#ff7b72" rx="2" />
+    <text x="203" y="10" font-family="sans-serif" font-size="12" fill="#8b949e">Acidic</text>
+    <rect x="260" y="0" width="12" height="12" fill="#79c0ff" rx="2" />
+    <text x="278" y="10" font-family="sans-serif" font-size="12" fill="#8b949e">Basic</text>
+  </g>
+
+  <!-- BLOQUE COMPLETO DE RESIDUOS ALEATORIOS DISTRIBUIDOS -->
+  
+  <!-- Fila 1 (Y: 14) -->
+  <g class="group group-hydro anim-1"><rect x="14" y="14" width="24" height="24" class="box"/><text x="26" y="30" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-3"><rect x="42" y="14" width="24" height="24" class="box"/><text x="54" y="30" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-5"><rect x="70" y="14" width="24" height="24" class="box"/><text x="82" y="30" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-7"><rect x="98" y="14" width="24" height="24" class="box"/><text x="110" y="30" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-9"><rect x="126" y="14" width="24" height="24" class="box"/><text x="138" y="30" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-11"><rect x="154" y="14" width="24" height="24" class="box"/><text x="166" y="30" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-13"><rect x="182" y="14" width="24" height="24" class="box"/><text x="194" y="30" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-15"><rect x="210" y="14" width="24" height="24" class="box"/><text x="222" y="30" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-17"><rect x="238" y="14" width="24" height="24" class="box"/><text x="250" y="30" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-19"><rect x="266" y="14" width="24" height="24" class="box"/><text x="278" y="30" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-21"><rect x="294" y="14" width="24" height="24" class="box"/><text x="306" y="30" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-23"><rect x="322" y="14" width="24" height="24" class="box"/><text x="334" y="30" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-25"><rect x="350" y="14" width="24" height="24" class="box"/><text x="362" y="30" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-27"><rect x="378" y="14" width="24" height="24" class="box"/><text x="390" y="30" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-29"><rect x="406" y="14" width="24" height="24" class="box"/><text x="418" y="30" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-2"><rect x="434" y="14" width="24" height="24" class="box"/><text x="446" y="30" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-4"><rect x="462" y="14" width="24" height="24" class="box"/><text x="474" y="30" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-6"><rect x="490" y="14" width="24" height="24" class="box"/><text x="502" y="30" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-8"><rect x="518" y="14" width="24" height="24" class="box"/><text x="530" y="30" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-10"><rect x="546" y="14" width="24" height="24" class="box"/><text x="558" y="30" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-12"><rect x="574" y="14" width="24" height="24" class="box"/><text x="586" y="30" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-14"><rect x="602" y="14" width="24" height="24" class="box"/><text x="614" y="30" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-16"><rect x="630" y="14" width="24" height="24" class="box"/><text x="642" y="30" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-18"><rect x="658" y="14" width="24" height="24" class="box"/><text x="670" y="30" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-20"><rect x="686" y="14" width="24" height="24" class="box"/><text x="698" y="30" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-22"><rect x="714" y="14" width="24" height="24" class="box"/><text x="726" y="30" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-24"><rect x="742" y="14" width="24" height="24" class="box"/><text x="754" y="30" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-26"><rect x="770" y="14" width="24" height="24" class="box"/><text x="782" y="30" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-28"><rect x="798" y="14" width="24" height="24" class="box"/><text x="810" y="30" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+
+  <!-- Fila 2 (Y: 42) -->
+  <g class="group group-polar anim-2"><rect x="14" y="42" width="24" height="24" class="box"/><text x="26" y="58" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-4"><rect x="42" y="42" width="24" height="24" class="box"/><text x="54" y="58" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-6"><rect x="70" y="42" width="24" height="24" class="box"/><text x="82" y="58" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-8"><rect x="98" y="42" width="24" height="24" class="box"/><text x="110" y="58" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-10"><rect x="126" y="42" width="24" height="24" class="box"/><text x="138" y="58" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-12"><rect x="154" y="42" width="24" height="24" class="box"/><text x="166" y="58" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-14"><rect x="182" y="42" width="24" height="24" class="box"/><text x="194" y="58" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-16"><rect x="210" y="42" width="24" height="24" class="box"/><text x="222" y="58" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-18"><rect x="238" y="42" width="24" height="24" class="box"/><text x="250" y="58" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-20"><rect x="266" y="42" width="24" height="24" class="box"/><text x="278" y="58" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-22"><rect x="294" y="42" width="24" height="24" class="box"/><text x="306" y="58" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-24"><rect x="322" y="42" width="24" height="24" class="box"/><text x="334" y="58" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-26"><rect x="350" y="42" width="24" height="24" class="box"/><text x="362" y="58" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-28"><rect x="378" y="42" width="24" height="24" class="box"/><text x="390" y="58" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-30"><rect x="406" y="42" width="24" height="24" class="box"/><text x="418" y="58" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-1"><rect x="434" y="42" width="24" height="24" class="box"/><text x="446" y="58" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-3"><rect x="462" y="42" width="24" height="24" class="box"/><text x="474" y="58" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-5"><rect x="490" y="42" width="24" height="24" class="box"/><text x="502" y="58" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-7"><rect x="518" y="42" width="24" height="24" class="box"/><text x="530" y="58" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-9"><rect x="546" y="42" width="24" height="24" class="box"/><text x="558" y="58" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-11"><rect x="574" y="42" width="24" height="24" class="box"/><text x="586" y="58" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-13"><rect x="602" y="42" width="24" height="24" class="box"/><text x="614" y="58" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-15"><rect x="630" y="42" width="24" height="24" class="box"/><text x="642" y="58" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-17"><rect x="658" y="42" width="24" height="24" class="box"/><text x="670" y="58" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-19"><rect x="686" y="42" width="24" height="24" class="box"/><text x="698" y="58" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-21"><rect x="714" y="42" width="24" height="24" class="box"/><text x="726" y="58" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-23"><rect x="742" y="42" width="24" height="24" class="box"/><text x="754" y="58" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-25"><rect x="770" y="42" width="24" height="24" class="box"/><text x="782" y="58" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-27"><rect x="798" y="42" width="24" height="24" class="box"/><text x="810" y="58" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+
+  <!-- Fila 3 (Y: 70) -->
+  <g class="group group-hydro anim-3"><rect x="14" y="70" width="24" height="24" class="box"/><text x="26" y="86" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-5"><rect x="42" y="70" width="24" height="24" class="box"/><text x="54" y="86" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-7"><rect x="70" y="70" width="24" height="24" class="box"/><text x="82" y="86" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-9"><rect x="98" y="70" width="24" height="24" class="box"/><text x="110" y="86" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-11"><rect x="126" y="70" width="24" height="24" class="box"/><text x="138" y="86" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-13"><rect x="154" y="70" width="24" height="24" class="box"/><text x="166" y="86" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-15"><rect x="182" y="70" width="24" height="24" class="box"/><text x="194" y="86" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-17"><rect x="210" y="70" width="24" height="24" class="box"/><text x="222" y="86" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-19"><rect x="238" y="70" width="24" height="24" class="box"/><text x="250" y="86" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-21"><rect x="266" y="70" width="24" height="24" class="box"/><text x="278" y="86" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-23"><rect x="294" y="70" width="24" height="24" class="box"/><text x="306" y="86" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-25"><rect x="322" y="70" width="24" height="24" class="box"/><text x="334" y="86" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-27"><rect x="350" y="70" width="24" height="24" class="box"/><text x="362" y="86" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-29"><rect x="378" y="70" width="24" height="24" class="box"/><text x="390" y="86" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-1"><rect x="406" y="70" width="24" height="24" class="box"/><text x="418" y="86" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-3"><rect x="434" y="70" width="24" height="24" class="box"/><text x="446" y="86" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-5"><rect x="462" y="70" width="24" height="24" class="box"/><text x="474" y="86" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-7"><rect x="490" y="70" width="24" height="24" class="box"/><text x="502" y="86" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-9"><rect x="518" y="70" width="24" height="24" class="box"/><text x="530" y="86" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-11"><rect x="546" y="70" width="24" height="24" class="box"/><text x="558" y="86" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-13"><rect x="574" y="70" width="24" height="24" class="box"/><text x="586" y="86" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-15"><rect x="602" y="70" width="24" height="24" class="box"/><text x="614" y="86" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-17"><rect x="630" y="70" width="24" height="24" class="box"/><text x="642" y="86" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-19"><rect x="658" y="70" width="24" height="24" class="box"/><text x="670" y="86" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-21"><rect x="686" y="70" width="24" height="24" class="box"/><text x="698" y="86" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-23"><rect x="714" y="70" width="24" height="24" class="box"/><text x="726" y="86" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-25"><rect x="742" y="70" width="24" height="24" class="box"/><text x="754" y="86" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-27"><rect x="770" y="70" width="24" height="24" class="box"/><text x="782" y="86" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-29"><rect x="798" y="70" width="24" height="24" class="box"/><text x="810" y="86" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+
+  <!-- Fila 4 (Y: 98) -->
+  <g class="group group-basic anim-4"><rect x="14" y="98" width="24" height="24" class="box"/><text x="26" y="114" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-6"><rect x="42" y="98" width="24" height="24" class="box"/><text x="54" y="114" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-8"><rect x="70" y="98" width="24" height="24" class="box"/><text x="82" y="114" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-10"><rect x="98" y="98" width="24" height="24" class="box"/><text x="110" y="114" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-12"><rect x="126" y="98" width="24" height="24" class="box"/><text x="138" y="114" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-14"><rect x="154" y="98" width="24" height="24" class="box"/><text x="166" y="114" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-16"><rect x="182" y="98" width="24" height="24" class="box"/><text x="194" y="114" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-18"><rect x="210" y="98" width="24" height="24" class="box"/><text x="222" y="114" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-20"><rect x="238" y="98" width="24" height="24" class="box"/><text x="250" y="114" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-22"><rect x="266" y="98" width="24" height="24" class="box"/><text x="278" y="114" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-24"><rect x="294" y="98" width="24" height="24" class="box"/><text x="306" y="114" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-26"><rect x="322" y="98" width="24" height="24" class="box"/><text x="334" y="114" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-28"><rect x="350" y="98" width="24" height="24" class="box"/><text x="362" y="114" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-30"><rect x="378" y="98" width="24" height="24" class="box"/><text x="390" y="114" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-2"><rect x="406" y="98" width="24" height="24" class="box"/><text x="418" y="114" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-4"><rect x="434" y="98" width="24" height="24" class="box"/><text x="446" y="114" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-6"><rect x="462" y="98" width="24" height="24" class="box"/><text x="474" y="114" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-8"><rect x="490" y="98" width="24" height="24" class="box"/><text x="502" y="114" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-10"><rect x="518" y="98" width="24" height="24" class="box"/><text x="530" y="114" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-12"><rect x="546" y="98" width="24" height="24" class="box"/><text x="558" y="114" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-14"><rect x="574" y="98" width="24" height="24" class="box"/><text x="586" y="114" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-16"><rect x="602" y="98" width="24" height="24" class="box"/><text x="614" y="114" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-18"><rect x="630" y="98" width="24" height="24" class="box"/><text x="642" y="114" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-20"><rect x="658" y="98" width="24" height="24" class="box"/><text x="670" y="114" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-22"><rect x="686" y="98" width="24" height="24" class="box"/><text x="698" y="114" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-24"><rect x="714" y="98" width="24" height="24" class="box"/><text x="726" y="114" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-26"><rect x="742" y="98" width="24" height="24" class="box"/><text x="754" y="114" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-28"><rect x="770" y="98" width="24" height="24" class="box"/><text x="782" y="114" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-30"><rect x="798" y="98" width="24" height="24" class="box"/><text x="810" y="114" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+
+  <!-- Fila 5 (Y: 126) -->
+  <g class="group group-hydro anim-5"><rect x="14" y="126" width="24" height="24" class="box"/><text x="26" y="142" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-7"><rect x="42" y="126" width="24" height="24" class="box"/><text x="54" y="142" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-9"><rect x="70" y="126" width="24" height="24" class="box"/><text x="82" y="142" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-11"><rect x="98" y="126" width="24" height="24" class="box"/><text x="110" y="142" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-13"><rect x="126" y="126" width="24" height="24" class="box"/><text x="138" y="142" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-15"><rect x="154" y="126" width="24" height="24" class="box"/><text x="166" y="142" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-17"><rect x="182" y="126" width="24" height="24" class="box"/><text x="194" y="142" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-19"><rect x="210" y="126" width="24" height="24" class="box"/><text x="222" y="142" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-21"><rect x="238" y="126" width="24" height="24" class="box"/><text x="250" y="142" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-23"><rect x="266" y="126" width="24" height="24" class="box"/><text x="278" y="142" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-25"><rect x="294" y="126" width="24" height="24" class="box"/><text x="306" y="142" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-27"><rect x="322" y="126" width="24" height="24" class="box"/><text x="334" y="142" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-29"><rect x="350" y="126" width="24" height="24" class="box"/><text x="362" y="142" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-1"><rect x="378" y="126" width="24" height="24" class="box"/><text x="390" y="142" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-3"><rect x="406" y="126" width="24" height="24" class="box"/><text x="418" y="142" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-5"><rect x="434" y="126" width="24" height="24" class="box"/><text x="446" y="142" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-7"><rect x="462" y="126" width="24" height="24" class="box"/><text x="474" y="142" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-9"><rect x="490" y="126" width="24" height="24" class="box"/><text x="502" y="142" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-11"><rect x="518" y="126" width="24" height="24" class="box"/><text x="530" y="142" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-13"><rect x="546" y="126" width="24" height="24" class="box"/><text x="558" y="142" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-15"><rect x="574" y="126" width="24" height="24" class="box"/><text x="586" y="142" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-17"><rect x="602" y="126" width="24" height="24" class="box"/><text x="614" y="142" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-19"><rect x="630" y="126" width="24" height="24" class="box"/><text x="642" y="142" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-21"><rect x="658" y="126" width="24" height="24" class="box"/><text x="670" y="142" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-23"><rect x="686" y="126" width="24" height="24" class="box"/><text x="698" y="142" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-25"><rect x="714" y="126" width="24" height="24" class="box"/><text x="726" y="142" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-27"><rect x="742" y="126" width="24" height="24" class="box"/><text x="754" y="142" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-29"><rect x="770" y="126" width="24" height="24" class="box"/><text x="782" y="142" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-2"><rect x="798" y="126" width="24" height="24" class="box"/><text x="810" y="142" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+
+  <!-- Fila 6 (Y: 154) -->
+  <g class="group group-polar anim-6"><rect x="14" y="154" width="24" height="24" class="box"/><text x="26" y="170" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-8"><rect x="42" y="154" width="24" height="24" class="box"/><text x="54" y="170" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-10"><rect x="70" y="154" width="24" height="24" class="box"/><text x="82" y="170" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-12"><rect x="98" y="154" width="24" height="24" class="box"/><text x="110" y="170" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-14"><rect x="126" y="154" width="24" height="24" class="box"/><text x="138" y="170" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-16"><rect x="154" y="154" width="24" height="24" class="box"/><text x="166" y="170" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-18"><rect x="182" y="154" width="24" height="24" class="box"/><text x="194" y="170" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-20"><rect x="210" y="154" width="24" height="24" class="box"/><text x="222" y="170" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-22"><rect x="238" y="154" width="24" height="24" class="box"/><text x="250" y="170" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+  <g class="group group-hydro anim-24"><rect x="266" y="154" width="24" height="24" class="box"/><text x="278" y="170" class="letter" text-anchor="middle">F</text><text x="420" y="235" class="prop-info">Phenylalanine (F) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-26"><rect x="294" y="154" width="24" height="24" class="box"/><text x="306" y="170" class="letter" text-anchor="middle">Y</text><text x="420" y="235" class="prop-info">Tyrosine (Y) - Polar Residue</text></g>
+  <g class="group group-hydro anim-28"><rect x="322" y="154" width="24" height="24" class="box"/><text x="334" y="170" class="letter" text-anchor="middle">P</text><text x="420" y="235" class="prop-info">Proline (P) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-30"><rect x="350" y="154" width="24" height="24" class="box"/><text x="362" y="170" class="letter" text-anchor="middle">C</text><text x="420" y="235" class="prop-info">Cysteine (C) - Polar Residue</text></g>
+  <g class="group group-hydro anim-2"><rect x="378" y="154" width="24" height="24" class="box"/><text x="390" y="170" class="letter" text-anchor="middle">W</text><text x="420" y="235" class="prop-info">Tryptophan (W) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-4"><rect x="406" y="154" width="24" height="24" class="box"/><text x="418" y="170" class="letter" text-anchor="middle">G</text><text x="420" y="235" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
+  <g class="group group-hydro anim-6"><rect x="434" y="154" width="24" height="24" class="box"/><text x="446" y="170" class="letter" text-anchor="middle">A</text><text x="420" y="235" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-8"><rect x="462" y="154" width="24" height="24" class="box"/><text x="474" y="170" class="letter" text-anchor="middle">S</text><text x="420" y="235" class="prop-info">Serine (S) - Polar Residue</text></g>
+  <g class="group group-basic anim-10"><rect x="490" y="154" width="24" height="24" class="box"/><text x="502" y="170" class="letter" text-anchor="middle">K</text><text x="420" y="235" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-acidic anim-12"><rect x="518" y="154" width="24" height="24" class="box"/><text x="530" y="170" class="letter" text-anchor="middle">E</text><text x="420" y="235" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
+  <g class="group group-hydro anim-14"><rect x="546" y="154" width="24" height="24" class="box"/><text x="558" y="170" class="letter" text-anchor="middle">V</text><text x="420" y="235" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-16"><rect x="574" y="154" width="24" height="24" class="box"/><text x="586" y="170" class="letter" text-anchor="middle">T</text><text x="420" y="235" class="prop-info">Threonine (T) - Polar Residue</text></g>
+  <g class="group group-hydro anim-18"><rect x="602" y="154" width="24" height="24" class="box"/><text x="614" y="170" class="letter" text-anchor="middle">L</text><text x="420" y="235" class="prop-info">Leucine (L) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-20"><rect x="630" y="154" width="24" height="24" class="box"/><text x="642" y="170" class="letter" text-anchor="middle">R</text><text x="420" y="235" class="prop-info">Arginine (R) - Basic Residue</text></g>
+  <g class="group group-acidic anim-22"><rect x="658" y="154" width="24" height="24" class="box"/><text x="670" y="170" class="letter" text-anchor="middle">D</text><text x="420" y="235" class="prop-info">Aspartic Acid (D) - Acidic Residue</text></g>
+  <g class="group group-polar anim-24"><rect x="686" y="154" width="24" height="24" class="box"/><text x="698" y="170" class="letter" text-anchor="middle">N</text><text x="420" y="235" class="prop-info">Asparagine (N) - Polar Residue</text></g>
+  <g class="group group-hydro anim-26"><rect x="714" y="154" width="24" height="24" class="box"/><text x="726" y="170" class="letter" text-anchor="middle">I</text><text x="420" y="235" class="prop-info">Isoleucine (I) - Hydrophobic Residue</text></g>
+  <g class="group group-polar anim-28"><rect x="742" y="154" width="24" height="24" class="box"/><text x="754" y="170" class="letter" text-anchor="middle">Q</text><text x="420" y="235" class="prop-info">Glutamine (Q) - Polar Residue</text></g>
+  <g class="group group-hydro anim-30"><rect x="770" y="154" width="24" height="24" class="box"/><text x="782" y="170" class="letter" text-anchor="middle">M</text><text x="420" y="235" class="prop-info">Methionine (M) - Hydrophobic Residue</text></g>
+  <g class="group group-basic anim-3"><rect x="798" y="154" width="24" height="24" class="box"/><text x="810" y="170" class="letter" text-anchor="middle">H</text><text x="420" y="235" class="prop-info">Histidine (H) - Basic Residue</text></g>
+</svg>
