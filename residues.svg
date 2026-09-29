@@ -1,12 +1,14 @@
-<svg width="840" height="250" xmlns="http://www.w3.org/2000/svg">
+<svg width="840" height="250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     /* Estilos base para los cuadros y letras */
     .grid-box { fill: #161b22; stroke: #30363d; stroke-width: 1; rx: 4; }
     .box { fill: #161b22; stroke: #30363d; stroke-width: 1.5; rx: 4; transition: 0.2s ease; cursor: crosshair; }
     .letter { fill: transparent; font-family: monospace; font-size: 14px; font-weight: bold; pointer-events: none; }
     .prop-info { fill: transparent; font-family: sans-serif; font-size: 13px; text-anchor: middle; font-weight: bold; pointer-events: none; }
-    .watermark { fill: #484f58; font-family: sans-serif; font-size: 11px; text-decoration: none; transition: 0.2s; }
-    .watermark:hover { fill: #58a6ff; }
+    
+    /* Estilos del enlace de la marca de agua */
+    .watermark { fill: #484f58; font-family: sans-serif; font-size: 11px; text-decoration: none; cursor: pointer; transition: 0.2s; }
+    .watermark-group:hover .watermark { fill: #58a6ff; text-decoration: underline; }
 
     /* Animación de pulso continuo */
     @keyframes pulse {
@@ -57,7 +59,7 @@
     .group:hover .prop-info { fill: #c9d1d9; }
   </style>
 
-  <!-- PATRÓN DE LA CUADRÍCULA DE FONDO (6 filas compactas) -->
+  <!-- PATRÓN DE LA CUADRÍCULA DE FONDO -->
   <defs>
     <pattern id="bg-grid" width="28" height="28" patternUnits="userSpaceOnUse">
       <rect width="24" height="24" class="grid-box" />
@@ -66,10 +68,10 @@
 
   <rect x="0" y="0" width="840" height="168" fill="url(#bg-grid)" />
 
-  <!-- ÁREA DE INFORMACIÓN DINÁMICA (Justo debajo de la cuadrícula, en Y: 184) -->
+  <!-- ÁREA DE INFORMACIÓN DINÁMICA -->
   <text x="420" y="184" class="prop-info" fill="#8b949e">Hover over any residue to explore properties</text>
 
-  <!-- LEYENDA VISUAL INFERIOR (Más próxima, en Y: 204) -->
+  <!-- LEYENDA VISUAL INFERIOR -->
   <g transform="translate(255, 198)">
     <rect x="0" y="0" width="10" height="10" fill="#e3b341" rx="2" />
     <text x="14" y="9" font-family="sans-serif" font-size="11" fill="#8b949e">Hydrophobic</text>
@@ -81,9 +83,13 @@
     <text x="244" y="9" font-family="sans-serif" font-size="11" fill="#8b949e">Basic</text>
   </g>
 
-  <!-- MARCA DE AGUA -->
+  <!-- MARCA DE AGUA CON ENLACE REAL Y ÁREA CLICKEABLE -->
   <a href="https://github.com/cpadillafranzotti/clpf-interactive-panels" target="_blank">
-    <text x="700" y="235" class="watermark">clpf-interactive-panels</text>
+    <g class="watermark-group">
+      <!-- Rectángulo invisible de soporte para ensanchar el área de clic -->
+      <rect x="680" y="215" width="145" height="25" fill="transparent" />
+      <text x="690" y="232" class="watermark">clpf-interactive-panels</text>
+    </g>
   </a>
 
   <!-- RESIDUOS (Filas 1 a 6) -->
@@ -238,7 +244,7 @@
   <g class="group group-polar anim-21"><rect x="658" y="126" width="24" height="24" class="box"/><text x="670" y="142" class="letter" text-anchor="middle">G</text><text x="420" y="184" class="prop-info">Glycine (G) - Polar/Flexible</text></g>
   <g class="group group-hydro anim-23"><rect x="686" y="126" width="24" height="24" class="box"/><text x="698" y="142" class="letter" text-anchor="middle">A</text><text x="420" y="184" class="prop-info">Alanine (A) - Hydrophobic Residue</text></g>
   <g class="group group-polar anim-25"><rect x="714" y="126" width="24" height="24" class="box"/><text x="726" y="142" class="letter" text-anchor="middle">S</text><text x="420" y="184" class="prop-info">Serine (S) - Polar Residue</text></g>
-  <g class="group group-basic anim-27"><rect x="742" y="126" width="24" height="24" class="box"/><text x="754" y="142" class="letter" text-anchor="middle">K</text><text x="420" y="184" class="prop-info">Lysine (K) - Basic Residue</text></g>
+  <g class="group group-basic anim-27"><rect x="742" y="126" width="24" height="24" class="box"/><text x="754" y="142" class="letter" text-anchor="middle5">K</text><text x="420" y="184" class="prop-info">Lysine (K) - Basic Residue</text></g>
   <g class="group group-acidic anim-29"><rect x="770" y="126" width="24" height="24" class="box"/><text x="782" y="142" class="letter" text-anchor="middle">E</text><text x="420" y="184" class="prop-info">Glutamic Acid (E) - Acidic Residue</text></g>
   <g class="group group-hydro anim-2"><rect x="798" y="126" width="24" height="24" class="box"/><text x="810" y="142" class="letter" text-anchor="middle">V</text><text x="420" y="184" class="prop-info">Valine (V) - Hydrophobic Residue</text></g>
 </svg>
